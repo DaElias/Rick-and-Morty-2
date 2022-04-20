@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Segment, Placeholder, Loader } from "semantic-ui-react";
+import { Placeholder, Loader } from "semantic-ui-react";
 const PersonajesCargando = () => {
   return (
     <div

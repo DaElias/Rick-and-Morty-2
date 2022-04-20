@@ -1,12 +1,6 @@
 import React from "react";
 import { MAIN_COLOR, FAV_COLOR } from "../utils/constants";
-import {
-  Grid,
-  Icon,
-  Image,
-  Label,
- 
-} from "semantic-ui-react";
+import { Grid, Icon, Image, Label } from "semantic-ui-react";
 import "./styles.css";
 const PersonajesCard = ({ personaje }) => {
   return (
@@ -14,8 +8,11 @@ const PersonajesCard = ({ personaje }) => {
       <div className="PokemonCard">
         <Icon name="favorite" color={FAV_COLOR} />
         <Image centered src={personaje.image} alt="Pokemon Front" />
-        <p className="PokemonCard-title">{personaje.name}</p>
-        <Label color={MAIN_COLOR}>normal</Label>
+        <h2 className="PokemonCard-title">{personaje.name}</h2>
+        <Label color={MAIN_COLOR}>{personaje.species}</Label>
+        <Label color={personaje.status === "Alive" ? "teal" : "red"}>
+          {personaje.status}
+        </Label>
       </div>
     </Grid.Column>
   );

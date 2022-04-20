@@ -1,46 +1,28 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPersonajes } from "../actions";
-import { getPersonajes } from "../api/getPersonajes";
 import PersonajesList from "../components/ListPokedex/PersonajesList";
+import { getPersonajesPage } from "../actions/type";
 import { Pagination } from "semantic-ui-react";
-
+// import {  } from "../actions/type";
 const Home = () => {
   const dispatch = useDispatch();
-  const listPersonajes = useSelector((state) => state.list);
+  const state = useSelector(({ list, totalPage }) => ({
+    list,
+    totalPage,
+  }));
   const [show, setShow] = useState(true);
-  // const [statePersonajes, setStatePersonajes] = useState([]);
-
-  // console.log(listPersonajes);
-  useEffect(() => {
-    getPersonajes()
-      .then((res) => {
-        // console.log(res);
-        dispatch(setPersonajes(res.data.results));
-        // setStatePersonajes(res.data.results);
-      })
-      .catch((e) => console.log(e));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handlePage = async (e, payload) => {
-    // console.log("payload", payload.activePage);
     const pagination = payload.activePage;
-    await axios
-      .get(`https://rickandmortyapi.com/api/character/?page=${pagination}`)
-      .then((res) => {
-        dispatch(setPersonajes(res.data.results));
-        setShow(false);
-        setTimeout(() => setShow(true), 500);
-        // setStatePersonajes(res.data.results);
-      })
-      .catch((e) => console.log(e));
+    //* Cambia de pagina a los personajes
+    dispatch(getPersonajesPage(pagination));
+    setShow(false);
+    setTimeout(() => setShow(true), 500);
   };
 
   return (
     <>
-      <PersonajesList listPersonajes={listPersonajes} show={show} />
+      <PersonajesList listPersonajes={state.list} show={show} />
       <div
         style={{
           display: "flex",
@@ -50,7 +32,7 @@ const Home = () => {
       >
         <Pagination
           defaultActivePage={1}
-          totalPages={42}
+          totalPages={state.totalPage}
           onPageChange={handlePage}
         />
       </div>
