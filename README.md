@@ -1,3 +1,8 @@
+# Rick-and-Morty- API2
+
+![alt text](https://res.cloudinary.com/dy5wl8c6k/image/upload/v1650323574/Captura_de_Pantalla_2022-04-18_a_la_s_6.12.23_p.m._bhwqwm.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
