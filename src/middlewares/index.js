@@ -1,12 +1,18 @@
-import { SET_PERSONAJES } from "../actions/type";
+import { CHANGEPAGE, GET_PERSONAJES } from "../actions/type";
+import { getPersonajesAPI, paginationPersonajesAPI } from "../api/funcionsAPI";
 
-const logActions = (store) => (next) => (actionInfo) => {
-  const { type } = actionInfo.action;
-  if (type === SET_PERSONAJES) {
-    next(actionInfo);
-  } else {
-    throw Error("Error reducer");
-  }
+export const getPersonajes = () => async (dispatch) => {
+  const personajes = await getPersonajesAPI();
+  dispatch({
+    type: GET_PERSONAJES,
+    payload: personajes,
+  });
 };
 
-export default logActions;
+export const getPersonajesPage = (page) => async (dispatch) => {
+  const newPagePersonajes = await paginationPersonajesAPI(page);
+  dispatch({
+    type: CHANGEPAGE,
+    payload: newPagePersonajes,
+  });
+};

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PersonajesList from "../components/ListPokedex/PersonajesList";
-import { getPersonajesPage } from "../actions/type";
-import { Pagination } from "semantic-ui-react";
+import { getPersonajesPage } from "../middlewares";
+import {  Pagination } from "semantic-ui-react";
 // import {  } from "../actions/type";
 const Home = () => {
   const dispatch = useDispatch();
